@@ -3,6 +3,7 @@ package org.example;
 public class Platform implements Runnable {
     int id;
     Cinta cinta;
+
     public Platform(int id, Cinta cinta){
         this.id = id;
         this.cinta = cinta;
@@ -12,9 +13,12 @@ public class Platform implements Runnable {
     public void run() {
         try{
             while(!Thread.currentThread().isInterrupted()){
-                //System.out.println("Soy la plataforma " + id + " y me vas a comer un teta");
+                Thread.sleep(5000);
+                cinta.posaBat(id);
             }
-        }finally{
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally{
             Thread.currentThread().interrupt();
         }
     }

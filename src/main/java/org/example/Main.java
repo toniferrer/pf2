@@ -22,7 +22,7 @@ public class Main {
         //Iniciamos los hilos de robots
         Robot[] robots = new Robot[10];
         Thread[] tRobots = new Thread[10];
-        for (int i = 1; i < robots.length; i++) {
+        for (int i = 0; i < robots.length; i++) {
             robots[i] = new Robot(i, cinta);
             tRobots[i] = new Thread(robots[i]);
             tRobots[i].start();
@@ -31,14 +31,14 @@ public class Main {
         //Iniciamos los hilos de plataformas
         Platform[] plataformas = new Platform[10];
         Thread[] tPlataformas = new Thread[10];
-        for (int i = 1; i < plataformas.length; i++) {
+        for (int i = 0; i < plataformas.length; i++) {
             plataformas[i] = new Platform(i, cinta);
             tPlataformas[i] = new Thread(plataformas[i]);
             tPlataformas[i].start();
         }
 
         //Hacemos joins de robots y plataformas
-        for(int i = 1; i < 10; i++){
+        for(int i = 0; i < 10; i++){
             tRobots[i].join();
             tPlataformas[i].join();
         }
