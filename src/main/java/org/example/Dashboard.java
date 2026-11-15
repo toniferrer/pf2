@@ -4,7 +4,6 @@ public class Dashboard implements Runnable{
     private Cinta cinta;
     private SupervisorCentral sc;
 
-
     public Dashboard(Cinta cinta, SupervisorCentral sc) {
         this.cinta = cinta;
         this.sc = sc;
@@ -15,7 +14,7 @@ public class Dashboard implements Runnable{
         try{
             while(!Thread.currentThread().isInterrupted()){
                 System.out.println("");
-                System.out.println("Soldadura: " + "idEstaciones" +"estado");
+                System.out.println("Soldadura: " + sc.getEstatEstacions());
                 System.out.println("Bateries en la cinta " + cinta.getQuantitat() + "/2");
                 System.out.println("Robot: " + "id" +"estado");
 

@@ -2,9 +2,16 @@ package org.example;
 
 public class Main {
     static void main() throws InterruptedException {
-        SupervisorCentral sc = new SupervisorCentral();
         Cinta cinta = new Cinta();
+
+        //Iniciamos las 3 estaciones
         Estacio[] estacions = new Estacio[3];
+        for (int i = 0; i < estacions.length; i++) {
+            estacions[i] = new Estacio(i);
+        }
+
+        //Creamos el supervisor central
+        SupervisorCentral sc = new SupervisorCentral(estacions);
 
         //Iniciamos el hilo de Dashboard
         Dashboard dashboard = new Dashboard(cinta, sc);
@@ -12,27 +19,25 @@ public class Main {
         tDashboard.setDaemon(true);
         tDashboard.start();
 
-        for (int i = 1; i < estacions.length; i++) {
-            estacions[i] = new Estacio(i);
-        }
-
+        //Iniciamos los hilos de robots
         Robot[] robots = new Robot[10];
         Thread[] tRobots = new Thread[10];
-        Platform[] plataformas = new Platform[10];
-        Thread[] tPlataformas = new Thread[10];
-
         for (int i = 1; i < robots.length; i++) {
             robots[i] = new Robot(i, cinta);
             tRobots[i] = new Thread(robots[i]);
             tRobots[i].start();
         }
 
+        //Iniciamos los hilos de plataformas
+        Platform[] plataformas = new Platform[10];
+        Thread[] tPlataformas = new Thread[10];
         for (int i = 1; i < plataformas.length; i++) {
             plataformas[i] = new Platform(i, cinta);
             tPlataformas[i] = new Thread(plataformas[i]);
             tPlataformas[i].start();
         }
 
+        //Hacemos joins de robots y plataformas
         for(int i = 1; i < 10; i++){
             tRobots[i].join();
             tPlataformas[i].join();
