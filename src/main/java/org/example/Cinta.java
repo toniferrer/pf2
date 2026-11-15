@@ -32,4 +32,8 @@ public class Cinta {
         }
         return "";
     }
+
+    public int getQuantitat(){
+        return quantitat;
+    }
 }

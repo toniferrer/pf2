@@ -6,6 +6,12 @@ public class Main {
         Cinta cinta = new Cinta();
         Estacio[] estacions = new Estacio[3];
 
+        //Iniciamos el hilo de Dashboard
+        Dashboard dashboard = new Dashboard(cinta, sc);
+        Thread tDashboard = new Thread(dashboard);
+        tDashboard.setDaemon(true);
+        tDashboard.start();
+
         for (int i = 1; i < estacions.length; i++) {
             estacions[i] = new Estacio(i);
         }
@@ -31,5 +37,8 @@ public class Main {
             tRobots[i].join();
             tPlataformas[i].join();
         }
+
+        tDashboard.interrupt();
+        tDashboard.join();
     }
 }

@@ -14,7 +14,7 @@ public class Robot implements Runnable {
         try{
             while(!Thread.currentThread().isInterrupted()){
                 String bateria = cinta.extreuBat(id);
-                System.out.println("Soy el robot " + id + " y me vas a comer un cojón");
+                //System.out.println("Soy el robot " + id + " y me vas a comer un cojón");
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

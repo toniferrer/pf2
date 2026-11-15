@@ -12,7 +12,7 @@ public class Platform implements Runnable {
     public void run() {
         try{
             while(!Thread.currentThread().isInterrupted()){
-                System.out.println("Soy la plataforma " + id + " y me vas a comer un teta");
+                //System.out.println("Soy la plataforma " + id + " y me vas a comer un teta");
             }
         }finally{
             Thread.currentThread().interrupt();
