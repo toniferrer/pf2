@@ -31,6 +31,9 @@ public class Robot implements Runnable {
                     sc.alliberarEstacio(estacio);
                     estat = "Esperant a agafar bateria";
                 }
+
+                //Solicitar el certificado
+                sc.signaCertificat(id);
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

@@ -6,6 +6,7 @@ public class SupervisorCentral {
     private final Estacio[] estacions;
     private Semaphore mutex;
     private Semaphore semaforo;
+    private boolean alertaActiva;
 
     public SupervisorCentral(Estacio[] estacions){
         this.estacions = estacions;
@@ -62,4 +63,24 @@ public class SupervisorCentral {
 
         return ocupades + " ocupades " + lliures + " lliures";
     }
+
+    //Activar alerta
+    public synchronized void activaAlerta(){
+        alertaActiva = true;
+    }
+
+    //Esperar si hay alerta
+    public synchronized void esperaSiAlerta() throws InterruptedException{
+        while(alertaActiva){
+            wait();
+        }
+    }
+
+    //Cerrar la alerta
+    public synchronized void resolAlerta(){
+        alertaActiva = false;
+        notifyAll();
+    }
+
+
 }

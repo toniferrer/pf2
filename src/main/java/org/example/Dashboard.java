@@ -23,7 +23,6 @@ public class Dashboard implements Runnable{
 
                 for (Robot robot : robots) {
                     System.out.println("Robot " + robot.getId() + ": " + robot.getEstat());
-
                 }
 
                 for (Platform plataforma : plataformes) {
