@@ -4,11 +4,13 @@ public class Robot implements Runnable {
     private int id;
     private Cinta cinta;
     private volatile String estat;
+    private SupervisorCentral sc;
 
-    public Robot(int id, Cinta cinta){
+    public Robot(int id, Cinta cinta, SupervisorCentral sc){
         this.id = id;
         this.cinta = cinta;
         this.estat = "Iniciat";
+        this.sc = sc;
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Main {
         Robot[] robots = new Robot[10];
         Thread[] tRobots = new Thread[10];
         for (int i = 0; i < robots.length; i++) {
-            robots[i] = new Robot(i, cinta);
+            robots[i] = new Robot(i, cinta, sc);
             tRobots[i] = new Thread(robots[i]);
             tRobots[i].start();
         }
@@ -26,7 +26,7 @@ public class Main {
         Platform[] plataformas = new Platform[10];
         Thread[] tPlataformas = new Thread[10];
         for (int i = 0; i < plataformas.length; i++) {
-            plataformas[i] = new Platform(i, cinta);
+            plataformas[i] = new Platform(i, cinta, sc);
             tPlataformas[i] = new Thread(plataformas[i]);
             tPlataformas[i].start();
         }

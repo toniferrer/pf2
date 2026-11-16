@@ -4,11 +4,13 @@ public class Platform implements Runnable {
     int id;
     Cinta cinta;
     private volatile String estat;
+    private SupervisorCentral sc;
 
-    public Platform(int id, Cinta cinta){
+    public Platform(int id, Cinta cinta, SupervisorCentral sc){
         this.id = id;
         this.cinta = cinta;
         this.estat = "Iniciat";
+        this.sc = sc;
     }
 
     @Override

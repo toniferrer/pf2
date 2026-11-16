@@ -23,6 +23,31 @@ public class SupervisorCentral {
         }
     }
 
+    //Obtener la reserva de una estación
+    public Estacio reservaEstacio() throws InterruptedException{
+        semaforo.acquire();
+
+        synchronized (this){
+            for(Estacio estacio : estacions){
+                if(!estacio.isOcupada()){
+                    estacio.setOcupada(true);
+                    return estacio;
+                }
+            }
+        }
+
+        semaforo.release();
+        throw new IllegalStateException("Cap estació lliure");
+    }
+
+    //Liberar una reserva de una estación
+    public void alliberarEstacio(Estacio estacio){
+        synchronized (this){
+            estacio.setOcupada(false);
+        }
+        semaforo.release();
+    }
+
     //Contar estaciones ocupadas y calcular las libres
     public synchronized String getEstatEstacions(){
         int ocupades = 0;
