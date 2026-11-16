@@ -17,9 +17,9 @@ public class Robot implements Runnable {
     public void run() {
         try{
             while(!Thread.currentThread().isInterrupted()){
-                Thread.sleep(20000);
-
                 sc.esperaSiAlerta();
+
+                Thread.sleep(2000);
                 estat =  "Esperant bateria";
                 int bateria = cinta.extreuBat();
 
