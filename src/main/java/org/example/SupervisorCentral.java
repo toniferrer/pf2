@@ -29,6 +29,7 @@ public class SupervisorCentral {
         semaforo.acquire();
 
         synchronized (this){
+            esperaSiAlerta();
             for(Estacio estacio : estacions){
                 if(!estacio.isOcupada()){
                     estacio.setOcupada(true);

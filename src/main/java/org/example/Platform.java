@@ -23,8 +23,6 @@ public class Platform implements Runnable {
                 estat = "Bateria posada a cinta";
             }
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally{
             Thread.currentThread().interrupt();
         }
     }

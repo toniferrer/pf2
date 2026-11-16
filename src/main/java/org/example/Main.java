@@ -37,13 +37,35 @@ public class Main {
         tDashboard.setDaemon(true);
         tDashboard.start();
 
-        //Hacemos joins de robots y plataformas
-        for(int i = 0; i < 10; i++){
-            tRobots[i].join();
-            tPlataformas[i].join();
-        }
+        //Creamos una alerta para probar que Supervisor funciona
+        sc.activaAlerta();
+        System.out.println("");
+        System.out.println("Alerta activada");
 
-        tDashboard.interrupt();
-        tDashboard.join();
+        Thread.sleep(6000);
+        sc.resolAlerta();
+        System.out.println("");
+        System.out.println("Alerta resolta");
+
+        //Ejecutar el programa durante 2 minutos
+        try{
+            Thread.sleep(120000);
+        } finally {
+            //Hacemos interrupt de robots y plataformas
+            for(int i = 0; i < 10; i++){
+                tRobots[i].interrupt();
+                tPlataformas[i].interrupt();
+            }
+
+            tDashboard.interrupt();
+
+            //Hacemos joins de robots y plataformas
+            for(int i = 0; i < 10; i++){
+                tRobots[i].join();
+                tPlataformas[i].join();
+            }
+
+            tDashboard.join();
+        }
     }
 }

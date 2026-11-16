@@ -18,10 +18,14 @@ public class Robot implements Runnable {
         try{
             while(!Thread.currentThread().isInterrupted()){
                 Thread.sleep(20000);
-                estat =  "Esperant a agafar bateria";
+
+                sc.esperaSiAlerta();
+                estat =  "Esperant bateria";
                 int bateria = cinta.extreuBat();
 
-                estat =  "Bateria agafada, esperant estacio";
+                sc.esperaSiAlerta();
+
+                estat =  "Esperant estacio";
                 Estacio estacio = sc.reservaEstacio();
 
                 try{
@@ -36,8 +40,6 @@ public class Robot implements Runnable {
                 sc.signaCertificat(id);
             }
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally{
             Thread.currentThread().interrupt();
         }
     }
