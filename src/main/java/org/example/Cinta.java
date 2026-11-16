@@ -57,6 +57,7 @@ public class Cinta {
         }
     }
 
+    //Obtener cantidad de baterias que hay en la cinta
     public int getQuantitat(){
         lock.lock();
         try {

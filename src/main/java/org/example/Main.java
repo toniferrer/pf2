@@ -13,12 +13,6 @@ public class Main {
         //Creamos el supervisor central
         SupervisorCentral sc = new SupervisorCentral(estacions);
 
-        //Iniciamos el hilo de Dashboard
-        Dashboard dashboard = new Dashboard(cinta, sc);
-        Thread tDashboard = new Thread(dashboard);
-        tDashboard.setDaemon(true);
-        tDashboard.start();
-
         //Iniciamos los hilos de robots
         Robot[] robots = new Robot[10];
         Thread[] tRobots = new Thread[10];
@@ -36,6 +30,12 @@ public class Main {
             tPlataformas[i] = new Thread(plataformas[i]);
             tPlataformas[i].start();
         }
+
+        //Iniciamos el hilo de Dashboard
+        Dashboard dashboard = new Dashboard(cinta, sc, robots, plataformas);
+        Thread tDashboard = new Thread(dashboard);
+        tDashboard.setDaemon(true);
+        tDashboard.start();
 
         //Hacemos joins de robots y plataformas
         for(int i = 0; i < 10; i++){
